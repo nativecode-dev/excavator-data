@@ -1,20 +1,20 @@
 import { Column, HasMany, Table, Unique } from 'sequelize-typescript'
-import { DefinitionValue } from './DefinitionValue'
+import { ExcavatorMapping } from './ExcavatorMapping'
 import { Model } from './Model'
 
 @Table
-export class Definition extends Model<Definition> {
+export class Excavator extends Model<Excavator> {
   @Column
   public description: string
+
+  @HasMany(() => ExcavatorMapping)
+  public excavatorMappings: ExcavatorMapping[]
 
   @Unique
   @Column
   public name: string
 
-  @HasMany(() => DefinitionValue)
-  public values: DefinitionValue[]
-
   protected typename(): string {
-    return this.name
+    return 'Excavator'
   }
 }

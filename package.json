@@ -23,7 +23,6 @@
   },
   "devDependencies": {
     "@types/chai": "^4.0.1",
-    "@types/gulp": "^4.0.4",
     "@types/mocha": "^2.2.41",
     "@types/node": "^8.0.13",
     "@types/sequelize": "^4.0.67",
@@ -38,29 +37,22 @@
     "eslint-plugin-node": "^5.1.0",
     "eslint-plugin-promise": "^3.5.0",
     "eslint-plugin-standard": "^3.0.1",
-    "gulp": "^3.9.1",
-    "gulp-babel": "^6.1.2",
-    "gulp-clean": "^0.3.2",
-    "gulp-debug": "^3.1.0",
-    "gulp-eslint": "^4.0.0",
-    "gulp-load-plugins": "^1.5.0",
-    "gulp-tslint": "^8.1.1",
-    "gulp-typescript": "^3.2.1",
     "mocha": "^3.4.2",
     "nyc": "^11.0.3",
     "rimraf": "^2.6.1",
-    "sequelize-cli": "^2.8.0",
     "ts-node": "^3.2.0",
     "tslint": "^5.5.0",
     "typescript": "^2.4.1"
   },
   "scripts": {
-    "build": "cross-env DEBUG=nativecode:* gulp build",
-    "postbuild": "cd lib && sequelize db:migrate --env development --config ../config/config.json",
+    "build": "npm run up",
+    "prebuild": "rimraf excavator.sqlite",
     "test": "cross-env DEBUG= nyc mocha --opts mocha.opts",
     "pretest": "npm run build",
     "coverage": "cross-env DEBUG= nyc --reporter=teamcity mocha --opts mocha.opts",
     "precoverage": "npm run build",
-    "coveralls": "nyc report --reporter=text-lcov | coveralls"
+    "coveralls": "nyc report --reporter=text-lcov | coveralls",
+    "down": "ts-node src/index.ts down",
+    "up": "ts-node src/index.ts up"
   }
 }
