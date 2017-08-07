@@ -1,0 +1,11 @@
+.fusebox/
+.nyc_output/
+.vscode/
+coverage/
+dist/
+lib/
+node_modules/
+
+npm-debug.log
+
+*.sqlite

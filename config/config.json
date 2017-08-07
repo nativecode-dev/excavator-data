@@ -1,0 +1,23 @@
+{
+  "development": {
+    "dialect": "sqlite",
+    "name": "excavator",
+    "password": null,
+    "storage": "excavator.sqlite",
+    "username": "root"
+  },
+  "production": {
+    "dialect": "mysql",
+    "host": "localhost",
+    "name": "excavator",
+    "password": null,
+    "username": "root"
+  },
+  "testing": {
+    "dialect": "sqlite",
+    "name": "excavator",
+    "password": null,
+    "storage": ":memory:",
+    "username": "root"
+  }
+}
