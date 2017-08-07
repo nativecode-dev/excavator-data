@@ -39,22 +39,37 @@ const seeders = new Umzug({
   },
 })
 
-const command: string = process.argv.length > 2 ? process.argv[2].trim() : 'up'
-Logger.debug('cli', command)
+export const down = async (): Promise<void> => {
+  await seeders.down()
+  await migrations.down()
+}
 
-const Bluebird = Models.sequelize.Promise
+export const pending = async (): Promise<Umzug.Migration[]> => {
+  const pendingMigrations: Umzug.Migration[] = await migrations.pending()
+  return pendingMigrations.concat(await seeders.pending())
+}
+
+export const up = async (): Promise<void> => {
+  await migrations.up()
+  await seeders.up()
+}
+
+const command: string = process.argv.length > 2 ? process.argv[2].trim() : 'default'
 
 switch (command) {
   case 'down':
-    seeders.down().then(() => migrations.down())
+    down()
     break
 
   case 'pending':
-    Bluebird.all([migrations.pending(), seeders.pending()])
-      .spread((...values: Umzug.Migration[]) => Logger.debug('pending', ...values))
+    pending()
+      .then((pendings: Umzug.Migration[]) => pendings
+        .map((m: Umzug.Migration) => m.file)
+        .map((file: string) => Logger.debug('pending', file))
+      )
     break
 
   case 'up':
-    migrations.up().then(() => seeders.up())
+    up()
     break
 }
