@@ -1,26 +1,7 @@
-# spelunker
+# excavator-data
 
-[![TeamCity (simple build status)](https://img.shields.io/teamcity/http/build.nativecode.com/s/nativecode_opensource_nofrills_spelunker_continous.svg?style=flat-square)](https://build.nativecode.com/viewType.html?buildTypeId=nativecode_opensource_nofrills_spelunker_continous)
-[![Travis](https://img.shields.io/travis/nativecode-dev/spelunker.svg?style=flat-square&label=travis)](https://travis-ci.org/nativecode-dev/spelunker)
-[![Coveralls branch](https://img.shields.io/coveralls/nativecode-dev/spelunker/master.svg?style=flat-square)](https://coveralls.io/r/nativecode-dev/spelunker?branch=master)
-
-# Install
-
-Get the latest development version from the `master` branch.
-
-```bash
-git clone https://github.com/nativecode-dev/spelunker.git
-```
-
-```bash
-cd spelunker
-npm run build
-```
-
-- Open a new Chrome tab using: [chrome://extensions/](chrome://extensions/)
-- Click on `Load unpacked extension...`
-- Choose the `dist` folder in `spelunker`.
-
+[![Travis](https://img.shields.io/travis/nativecode-dev/excavator-data.svg?style=flat-square&label=travis)](https://travis-ci.org/nativecode-dev/excavator-data)
+[![Coveralls branch](https://img.shields.io/coveralls/nativecode-dev/excavator-data/master.svg?style=flat-square)](https://coveralls.io/r/nativecode-dev/excavator-data?branch=master)
 
 # License
 

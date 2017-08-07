@@ -7,7 +7,7 @@
   "homepage": "https://github.com/nativecode-dev/excavator-data#readme",
   "license": "MIT",
   "main": "dist/index.js",
-  "name": "excavator-data",
+  "name": "@nativecode/excavator-data",
   "repository": {
     "type": "git",
     "url": "git+https://github.com/nativecode-dev/excavator-data.git"
