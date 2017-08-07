@@ -3,8 +3,8 @@ import * as Models from '../models/index'
 import { QueryInterface, Sequelize } from 'sequelize'
 
 export const down = async (query: QueryInterface, sql: Sequelize): Promise<void> => {
-  Models.Definition.all({ include: [Models.DefinitionValue] })
-    .then((definitions: Models.Definition[]) => definitions.map((definition: Models.Definition) => definition.destroy()))
+  Models.Definition.findById(1, { include: [Models.DefinitionValue] })
+    .then((definition: Models.Definition) => definition.destroy())
 }
 
 export const up = async (query: QueryInterface, sql: Sequelize): Promise<void> => {

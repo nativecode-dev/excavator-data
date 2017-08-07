@@ -53,6 +53,7 @@
     "precoverage": "npm run build",
     "coveralls": "nyc report --reporter=text-lcov | coveralls",
     "down": "ts-node src/index.ts down",
+    "pending": "ts-node src/index.ts pending",
     "up": "ts-node src/index.ts up"
   }
 }

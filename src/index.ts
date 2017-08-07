@@ -39,11 +39,19 @@ const seeders = new Umzug({
   },
 })
 
-const command: string = process.argv.length > 1 ? process.argv[1].trim() : 'up'
+const command: string = process.argv.length > 2 ? process.argv[2].trim() : 'up'
+Logger.debug('cli', command)
+
+const Bluebird = Models.sequelize.Promise
 
 switch (command) {
   case 'down':
-    migrations.down().then(() => seeders.down())
+    seeders.down().then(() => migrations.down())
+    break
+
+  case 'pending':
+    Bluebird.all([migrations.pending(), seeders.pending()])
+      .spread((...values: Umzug.Migration[]) => Logger.debug('pending', ...values))
     break
 
   case 'up':
