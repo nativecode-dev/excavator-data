@@ -3,7 +3,7 @@
     "dialect": "sqlite",
     "name": "excavator",
     "password": null,
-    "storage": "excavator.sqlite",
+    "storage": "../excavator.sqlite",
     "username": "root"
   },
   "production": {

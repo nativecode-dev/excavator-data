@@ -1,10 +1,23 @@
-import { QueryInterface } from 'sequelize'
-import { DataType } from 'sequelize-typescript'
+import * as sqlts from 'sequelize-typescript'
 
-export const down = async (query: QueryInterface): Promise<void> => {
-  await Promise.resolve()
+import { QueryInterface, Sequelize } from 'sequelize'
+import { DataType } from 'sequelize-typescript'
+import { Logger } from '../logging'
+import { Definition } from '../models/index'
+
+const definition = (): string => {
+  const name: string | any = Definition.getTableName()
+
+  if (typeof name === 'string') {
+    return name
+  }
+  return name.tableName
 }
 
-export const up = async (query: QueryInterface): Promise<void> => {
-  await Promise.resolve()
+export const down = async (query: QueryInterface, sql: Sequelize): Promise<void> => {
+  await Definition.drop()
+}
+
+export const up = async (query: QueryInterface, sql: Sequelize): Promise<void> => {
+  await Definition.sync()
 }

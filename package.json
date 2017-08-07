@@ -55,7 +55,7 @@
     "typescript": "^2.4.1"
   },
   "scripts": {
-    "build": "cross-env DEBUG= gulp build",
+    "build": "cross-env DEBUG=nativecode:* gulp build",
     "postbuild": "cd lib && sequelize db:migrate --env development --config ../config/config.json",
     "test": "cross-env DEBUG= nyc mocha --opts mocha.opts",
     "pretest": "npm run build",
