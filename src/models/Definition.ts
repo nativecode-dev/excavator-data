@@ -15,6 +15,6 @@ export class Definition extends Model<Definition> {
   public values: DefinitionValue[]
 
   protected typename(): string {
-    return this.name
+    return 'Definition'
   }
 }
