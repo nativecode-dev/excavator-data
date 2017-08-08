@@ -8,7 +8,7 @@
     "jsx": "react",
     "module": "commonjs",
     "moduleResolution": "node",
-    "noImplicitAny": false,
+    "noImplicitAny": true,
     "outDir": "lib",
     "pretty": true,
     "sourceMap": true,

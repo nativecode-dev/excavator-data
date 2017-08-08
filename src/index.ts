@@ -8,7 +8,7 @@ import * as Models from './models/index'
 import { Logger } from './logging'
 
 const migrations = new Umzug({
-  logging: (...args): void => Logger.debug('migrations', ...args),
+  logging: (...args: any[]): void => Logger.debug('migrations', ...args),
   migrations: {
     params: [
       Models.sequelize.getQueryInterface(),
@@ -24,7 +24,7 @@ const migrations = new Umzug({
 })
 
 const seeders = new Umzug({
-  logging: (...args): void => Logger.debug('seeders', ...args),
+  logging: (...args: any[]): void => Logger.debug('seeders', ...args),
   migrations: {
     params: [
       Models.sequelize.getQueryInterface(),

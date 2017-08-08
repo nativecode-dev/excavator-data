@@ -22,10 +22,11 @@ const config: ISequelizeConfig = JSON.parse(fs.readFileSync(filename).toString()
 
 Logger.debug('sequelize', env, config)
 const sqlts: Sequelize = new Sequelize(config)
+const indexed: { [key: string]: any } = Models
 
 const models: any[] = Object.keys(Models)
-  .filter((key: string) => Models[key].sync)
-  .map((key: string) => Models[key])
+  .filter((key: string) => indexed[key].sync)
+  .map((key: string) => indexed[key])
 
 sqlts.addModels(models)
 

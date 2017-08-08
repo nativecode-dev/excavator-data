@@ -6,7 +6,7 @@
   "description": "Creates scraper definitions.",
   "homepage": "https://github.com/nativecode-dev/excavator-data#readme",
   "license": "MIT",
-  "main": "dist/index.js",
+  "main": "lib/index.js",
   "name": "@nativecode/excavator-data",
   "repository": {
     "type": "git",
@@ -50,15 +50,12 @@
     "typescript": "^2.4.1"
   },
   "scripts": {
-    "build": "npm run up",
+    "build": "tsc --project .",
     "prebuild": "rimraf excavator.sqlite",
     "test": "cross-env DEBUG= nyc mocha --opts mocha.opts",
     "pretest": "npm run build",
     "coverage": "cross-env DEBUG= nyc --reporter=teamcity mocha --opts mocha.opts",
     "precoverage": "npm run build",
-    "coveralls": "nyc report --reporter=text-lcov | coveralls",
-    "down": "ts-node src/index.ts down",
-    "pending": "ts-node src/index.ts pending",
-    "up": "ts-node src/index.ts up"
+    "coveralls": "nyc report --reporter=text-lcov | coveralls"
   }
 }
