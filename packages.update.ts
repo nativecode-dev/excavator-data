@@ -64,6 +64,15 @@ interface Config {
 readfile(npmpackage)
   .then((file: Buffer) => ({ package: JSON.parse(file.toString()) }))
   .then(async (config: Config) => {
-    await update(Object.keys(config.package.dependencies), '--save')
-    await update(Object.keys(config.package.devDependencies), '--save-dev')
+    if (config.package.dependencies) {
+      await update(Object.keys(config.package.dependencies), '--save')
+    }
+
+    if (config.package.devDependencies) {
+      await update(Object.keys(config.package.devDependencies), '--save-dev')
+    }
+
+    if (config.package.peerDependencies) {
+      await update(Object.keys(config.package.peerDependencies), '--save-dev')
+    }
   })

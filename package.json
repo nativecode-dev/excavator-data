@@ -70,7 +70,6 @@
     "test": "cross-env DEBUG= EXCAVATOR_ENV=testing nyc mocha --opts mocha.opts",
     "pretest": "npm run build",
     "coverage": "cross-env DEBUG= nyc --reporter=teamcity mocha --opts mocha.opts",
-    "coveralls": "cross-env DEBUG= nyc report --reporter=text-lcov | coveralls",
-    "force:update": "ts-node packages.update.ts"
+    "coveralls": "cross-env DEBUG= nyc report --reporter=text-lcov | coveralls"
   }
 }
