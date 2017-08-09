@@ -51,6 +51,8 @@
   "nyc": {
     "all": true,
     "exclude": [
+      "src/migrations/**/*.ts",
+      "src/seeders/**/*.ts",
       "tests/**/*.ts"
     ],
     "extension": [
