@@ -8,6 +8,7 @@ import { GetConfig, GetRepository, IConfiguration } from '../src/index'
 
 describe('when using sequelize-typescript loader', () => {
   describe('loading configuration', () => {
+
     it('should get default, in-memory database configuration', async () => {
       const config: IConfiguration = await GetConfig()
       expect(config.db.name).to.equal('excavator')

@@ -17,6 +17,7 @@ gulpfile.js
 mocha.opts
 tsconfig.json
 tslint.json
+yarn.lock
 
 dist/**/*.map
 lib/**/*.map
