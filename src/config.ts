@@ -11,29 +11,21 @@ export interface IConfiguration {
   db: IDbConfiguration
 }
 
-interface IConfigurationEnv {
+export interface IConfigurationEnv {
   [key: string]: IConfiguration
 }
 
-const DefaultConfigFile: string = 'excavator.json'
+export const DefaultConfigFile: string = 'excavator.json'
 
-const exists = (filename: string) => new Promise((resolve, reject): void => {
+const exists = (filename: string) => new Promise((resolve, reject): void =>
   fs.exists(filename, (exist: boolean) => resolve(exist))
-})
+)
 
-const stringy = (value: string | undefined, defaults: string): string => {
-  if (value === undefined) {
-    return defaults
-  }
-  return value
-}
+const stringy = (value: string | undefined, defaults: string): string =>
+  value === undefined ? defaults : value
 
-const stringray = (value: string | undefined, defaults: string[]): string[] => {
-  if (value === undefined) {
-    return defaults
-  }
-  return value.split(',')
-}
+const stringray = (value: string | undefined, defaults: string[]): string[] =>
+  value === undefined ? defaults : value.split(',')
 
 const env: string = stringy(process.env.EXCAVATOR_ENV, 'development')
 const envignore: string[] = stringray(process.env.EXCAVATOR_ENV_IGNORE, ['dev', 'development', 'local'])
@@ -59,7 +51,7 @@ const ConfigSearch = async (cwd: string): Promise<IConfiguration> => {
     }
   }
 
-  // Finally, we'll just use our default or from environment.
+  // Finally, we'll use environment variables or defaults.
   return {
     db: {
       dialect: stringy(process.env.EXCAVATOR_DB_DIALECT, 'sqlite'),
@@ -72,6 +64,5 @@ const ConfigSearch = async (cwd: string): Promise<IConfiguration> => {
   }
 }
 
-export const Configuration = async (): Promise<IConfiguration> => {
-  return await ConfigSearch(process.cwd())
-}
+export const Configuration = async (cwd?: string): Promise<IConfiguration> =>
+  await ConfigSearch(cwd || process.cwd())
