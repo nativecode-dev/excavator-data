@@ -67,7 +67,7 @@
   "scripts": {
     "build": "tsc --project tsconfig.json",
     "prebuild": "rimraf lib && rimraf .nyc_output && rimraf coverage",
-    "test": "cross-env DEBUG= EXCAVATOR_ENV=development nyc mocha --opts mocha.opts",
+    "test": "cross-env DEBUG= EXCAVATOR_ENV=testing nyc mocha --opts mocha.opts",
     "pretest": "npm run build",
     "coverage": "cross-env DEBUG= nyc --reporter=teamcity mocha --opts mocha.opts",
     "coveralls": "cross-env DEBUG= nyc report --reporter=text-lcov | coveralls",

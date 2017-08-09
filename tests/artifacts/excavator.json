@@ -1,0 +1,11 @@
+{
+  "testing": {
+    "db": {
+      "dialect": "sqlite",
+      "name": "excavator-config",
+      "password": "",
+      "storage": ":memory:",
+      "username": "root"
+    }
+  }
+}
