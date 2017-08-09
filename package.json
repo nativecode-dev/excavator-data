@@ -48,12 +48,27 @@
     "tslint": "^5.6.0",
     "typescript": "^2.4.2"
   },
+  "nyc": {
+    "all": true,
+    "exclude": [
+      "tests/**/*.ts"
+    ],
+    "extension": [
+      ".ts"
+    ],
+    "include": [
+      "src/**/*.ts"
+    ],
+    "instrument": true,
+    "sourceMap": true
+  },
   "scripts": {
     "build": "tsc --project tsconfig.json",
     "prebuild": "rimraf lib && rimraf .nyc_output && rimraf coverage",
-    "test": "cross-env DEBUG= nyc mocha --opts mocha.opts",
+    "test": "cross-env DEBUG= EXCAVATOR_ENV=development nyc mocha --opts mocha.opts",
+    "pretest": "npm run build",
     "coverage": "cross-env DEBUG= nyc --reporter=teamcity mocha --opts mocha.opts",
-    "coveralls": "nyc report --reporter=text-lcov | coveralls",
+    "coveralls": "cross-env DEBUG= nyc report --reporter=text-lcov | coveralls",
     "force:update": "ts-node packages.update.ts"
   }
 }
