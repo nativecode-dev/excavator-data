@@ -17,7 +17,11 @@ enum CliMigrateAction {
   up = 'up',
 }
 
-const prompts: { [key: string]: inquirer.Question } = {
+interface CliPrompts {
+  [key: string]: inquirer.Question
+}
+
+const prompts: CliPrompts = {
   $: {
     choices: [
       CliCommandType.migrate,
