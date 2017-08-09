@@ -73,5 +73,5 @@ const ConfigSearch = async (cwd: string, env: any): Promise<IConfiguration> => {
   }
 }
 
-export const Configuration = async (cwd?: string, env?: any): Promise<IConfiguration> =>
+export const GetConfig = async (cwd?: string, env?: any): Promise<IConfiguration> =>
   await ConfigSearch(cwd || process.cwd(), env || process.env)

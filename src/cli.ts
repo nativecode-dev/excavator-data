@@ -1,7 +1,7 @@
 import * as inquirer from 'inquirer'
 import * as umzug from 'umzug'
 
-import { down, pending, up } from './index'
+import { MigrateDown, MigrateList, MigrateUp } from './index'
 import { Logger } from './logging'
 
 enum CliCommandType {
@@ -47,12 +47,12 @@ const prompts: CliPrompts = {
 
 const lib: any = {
   migrate: {
-    down: (): Promise<any> => down(),
-    pending: (): Promise<any> => pending().then((pendings: umzug.Migration[]) => pendings
+    down: (): Promise<any> => MigrateDown(),
+    pending: (): Promise<any> => MigrateList().then((pendings: umzug.Migration[]) => pendings
       .map((m: umzug.Migration) => m.file)
       .map((file: string) => Logger.debug('pending', file))
     ),
-    up: (): Promise<any> => up(),
+    up: (): Promise<any> => MigrateUp(),
   },
 }
 

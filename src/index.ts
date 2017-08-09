@@ -6,11 +6,11 @@ import * as Umzug from 'umzug'
 import * as Models from './models/index'
 
 import { Sequelize } from 'sequelize-typescript'
-import { Configuration, IConfiguration } from './config'
+import { GetConfig, IConfiguration } from './config'
 import { Logger } from './logging'
 
-const umzugs = (sequelize: Sequelize): Umzug.Umzug[] => {
-  const migrations = new Umzug({
+const GetUmzugConfigs = (sequelize: Sequelize): Umzug.Umzug[] => {
+  const common = {
     logging: (...args: any[]): void => Logger.debug('migrations', ...args),
     migrations: {
       params: [
@@ -24,33 +24,29 @@ const umzugs = (sequelize: Sequelize): Umzug.Umzug[] => {
     storageOptions: {
       sequelize,
     },
-  })
+  }
 
-  const seeders = new Umzug({
+  const migrations = new Umzug(Object.assign({
+    logging: (...args: any[]): void => Logger.debug('migrations', ...args),
+    migrations: {
+      path: path.join(__dirname, 'migrations'),
+      pattern: /\d{14}-\w+-migration\.ts$/,
+    },
+  }, common))
+
+  const seeders = new Umzug(Object.assign({
     logging: (...args: any[]): void => Logger.debug('seeders', ...args),
     migrations: {
-      params: [
-        sequelize.getQueryInterface(),
-        Sequelize,
-      ],
       path: path.join(__dirname, 'seeders'),
       pattern: /\d{14}-\w+-seeder\.ts$/,
     },
-    storage: 'sequelize',
-    storageOptions: {
-      sequelize,
-    },
-  })
+  }, common))
 
   return [migrations, seeders]
 }
 
-export const Migrator = (config?: IConfiguration): Promise<Umzug.Umzug[]> => {
-  return Repository(config).then((sequelize: Sequelize): Umzug.Umzug[] => umzugs(sequelize))
-}
-
-export const Repository = async (config?: IConfiguration): Promise<Sequelize> => {
-  const configuration: IConfiguration = await Configuration()
+export const GetRepository = async (config?: IConfiguration): Promise<Sequelize> => {
+  const configuration: IConfiguration = await GetConfig()
 
   Logger.debug('Creating Sequelize instance', configuration.db)
   const sequelize: Sequelize = new Sequelize(configuration.db)
@@ -64,20 +60,24 @@ export const Repository = async (config?: IConfiguration): Promise<Sequelize> =>
   return sequelize
 }
 
-export const down = async (): Promise<void> => {
-  const [migrations, seeders] = await Migrator()
+const Migrator = (config?: IConfiguration): Promise<Umzug.Umzug[]> => {
+  return GetRepository(config).then((sequelize: Sequelize): Umzug.Umzug[] => GetUmzugConfigs(sequelize))
+}
+
+export const MigrateDown = async (config?: IConfiguration): Promise<void> => {
+  const [migrations, seeders] = await Migrator(config)
   await seeders.down()
   await migrations.down()
 }
 
-export const pending = async (): Promise<Umzug.Migration[]> => {
-  const [migrations, seeders] = await Migrator()
+export const MigrateList = async (config?: IConfiguration): Promise<Umzug.Migration[]> => {
+  const [migrations, seeders] = await Migrator(config)
   const pendingMigrations: Umzug.Migration[] = await migrations.pending()
   return pendingMigrations.concat(await seeders.pending())
 }
 
-export const up = async (): Promise<void> => {
-  const [migrations, seeders] = await Migrator()
+export const MigrateUp = async (config?: IConfiguration): Promise<void> => {
+  const [migrations, seeders] = await Migrator(config)
   await migrations.up()
   await seeders.up()
 }
