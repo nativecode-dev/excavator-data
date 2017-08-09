@@ -1,11 +1,15 @@
 import * as sqlts from 'sequelize-typescript'
-import { Column, CreatedAt, Table, UpdatedAt } from 'sequelize-typescript'
+import { Column, CreatedAt, DeletedAt, Table, UpdatedAt } from 'sequelize-typescript'
 import { Lincoln, Logger } from '../logging'
 
 export abstract class Model<T> extends sqlts.Model<T> {
   @CreatedAt
   @Column
   public created: Date
+
+  @DeletedAt
+  @Column
+  public deleted: Date
 
   @UpdatedAt
   @Column
