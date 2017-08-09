@@ -5,3 +5,4 @@ node_js:
 os:
   - linux
 after_success: npm run coveralls
+before_script: npm ru force:update
