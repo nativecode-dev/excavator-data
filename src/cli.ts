@@ -1,7 +1,8 @@
 import * as inquirer from 'inquirer'
 import * as umzug from 'umzug'
 
-import { ExcavatorDataServer, MigrateDown, MigrateList, MigrateUp } from './index'
+import { Sequelize } from 'sequelize-typescript'
+import { ExcavatorDataServer, GetConfig, GetRepository, IConfiguration, MigrateDown, MigrateList, MigrateUp } from './index'
 import { Logger } from './logging'
 
 enum CliCommandType {
@@ -65,7 +66,9 @@ inquirer.prompt([prompts.$])
       const actionHandler = lib[answers.command][action.migration]
       return actionHandler()
     } else if (answers.command === CliCommandType.server) {
+      const config: IConfiguration = await GetConfig()
+      const repository: Sequelize = await GetRepository(config)
       const server: ExcavatorDataServer = new ExcavatorDataServer()
-      await server.start()
+      await server.start(repository)
     }
   })
