@@ -15,6 +15,7 @@ tests/
 .travis.yml
 gulpfile.js
 mocha.opts
+nodemon.json
 tsconfig.json
 tslint.json
 yarn.lock

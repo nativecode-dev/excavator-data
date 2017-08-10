@@ -1,17 +1,18 @@
 import * as inquirer from 'inquirer'
 import * as umzug from 'umzug'
 
-import { MigrateDown, MigrateList, MigrateUp } from './index'
+import { ExcavatorDataServer, MigrateDown, MigrateList, MigrateUp } from './index'
 import { Logger } from './logging'
 
 enum CliCommandType {
+  server = 'server',
   migrate = 'migrate',
-  createMigration = 'create:migration',
-  createModel = 'create:model',
-  createSeeder = 'create:seeder',
 }
 
 enum CliMigrateAction {
+  createMigration = 'create:migration',
+  createModel = 'create:model',
+  createSeeder = 'create:seeder',
   down = 'down',
   pending = 'pending',
   up = 'up',
@@ -25,9 +26,7 @@ const prompts: CliPrompts = {
   $: {
     choices: [
       CliCommandType.migrate,
-      CliCommandType.createMigration,
-      CliCommandType.createModel,
-      CliCommandType.createSeeder,
+      CliCommandType.server,
     ],
     message: 'Select a command...',
     name: 'command',
@@ -38,6 +37,9 @@ const prompts: CliPrompts = {
       CliMigrateAction.up,
       CliMigrateAction.down,
       CliMigrateAction.pending,
+      CliMigrateAction.createMigration,
+      CliMigrateAction.createModel,
+      CliMigrateAction.createSeeder,
     ],
     message: 'Select a migration action...',
     name: 'migration',
@@ -62,5 +64,8 @@ inquirer.prompt([prompts.$])
       const action: inquirer.Answers = await inquirer.prompt([prompts.migrate])
       const actionHandler = lib[answers.command][action.migration]
       return actionHandler()
+    } else if (answers.command === CliCommandType.server) {
+      const server: ExcavatorDataServer = new ExcavatorDataServer()
+      await server.start()
     }
   })

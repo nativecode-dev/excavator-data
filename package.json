@@ -16,6 +16,7 @@
   "version": "0.2.0",
   "dependencies": {
     "@nofrills/lincoln-debug": "^0.3.2",
+    "@nofrills/smorgasbord": "0.6.0",
     "bluebird": "^3.5.0",
     "inquirer": "^3.2.1",
     "reflect-metadata": "^0.1.10",
@@ -42,6 +43,7 @@
     "eslint-plugin-promise": "^3.5.0",
     "eslint-plugin-standard": "^3.0.1",
     "mocha": "^3.5.0",
+    "nodemon": "^1.11.0",
     "nyc": "^11.1.0",
     "rimraf": "^2.6.1",
     "ts-node": "^3.3.0",
@@ -70,6 +72,8 @@
     "test": "cross-env DEBUG= EXCAVATOR_ENV=testing nyc mocha --opts mocha.opts",
     "pretest": "npm run build",
     "coverage": "cross-env DEBUG= nyc --reporter=teamcity mocha --opts mocha.opts",
-    "coveralls": "cross-env DEBUG= nyc report --reporter=text-lcov | coveralls"
+    "coveralls": "cross-env DEBUG= nyc report --reporter=text-lcov | coveralls",
+    "interactive": "cross-env DEBUG= ts-node src/cli.ts",
+    "watch": "cross-env DEBUG=nativecode:excavator-data:* nodemon"
   }
 }

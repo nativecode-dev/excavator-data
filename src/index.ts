@@ -1,5 +1,6 @@
 export * from './config'
 export * from './models/index'
+export * from './server'
 
 import * as path from 'path'
 import * as Umzug from 'umzug'
@@ -46,7 +47,7 @@ const GetUmzugConfigs = (sequelize: Sequelize): Umzug.Umzug[] => {
 }
 
 export const GetRepository = async (config?: IConfiguration): Promise<Sequelize> => {
-  const configuration: IConfiguration = await GetConfig()
+  const configuration: IConfiguration = config || await GetConfig()
 
   Logger.debug('Creating Sequelize instance', configuration.db)
   const sequelize: Sequelize = new Sequelize(configuration.db)
@@ -61,21 +62,25 @@ export const GetRepository = async (config?: IConfiguration): Promise<Sequelize>
 }
 
 export const MigrateDown = async (sequelize?: Sequelize): Promise<void> => {
-  const sqlts: Sequelize = sequelize || await GetRepository(await GetConfig())
+  const config: IConfiguration = await GetConfig()
+  const sqlts: Sequelize = sequelize || await GetRepository(config)
   const [migrations, seeders] = GetUmzugConfigs(sqlts)
   await seeders.down()
   await migrations.down()
 }
 
 export const MigrateList = async (sequelize?: Sequelize): Promise<Umzug.Migration[]> => {
-  const sqlts: Sequelize = sequelize || await GetRepository(await GetConfig())
+  const config: IConfiguration = await GetConfig()
+  const sqlts: Sequelize = sequelize || await GetRepository(config)
   const [migrations, seeders] = GetUmzugConfigs(sqlts)
   const pendingMigrations: Umzug.Migration[] = await migrations.pending()
-  return pendingMigrations.concat(await seeders.pending())
+  const pendingSeeders: Umzug.Migration[] = await seeders.pending()
+  return [...pendingMigrations, ...pendingSeeders]
 }
 
 export const MigrateUp = async (sequelize?: Sequelize): Promise<void> => {
-  const sqlts: Sequelize = sequelize || await GetRepository(await GetConfig())
+  const config: IConfiguration = await GetConfig()
+  const sqlts: Sequelize = sequelize || await GetRepository(config)
   const [migrations, seeders] = GetUmzugConfigs(sqlts)
   await migrations.up()
   await seeders.up()
