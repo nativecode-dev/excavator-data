@@ -65,6 +65,7 @@ const ConfigSearch = async (cwd: string, env: any): Promise<IConfiguration> => {
     db: {
       dialect: stringy(env.EXCAVATOR_DB_DIALECT, 'sqlite'),
       host: stringy(env.EXCAVATOR_DB_HOST, 'localhost'),
+      logging: false,
       name: stringy(env.EXCAVATOR_DB_NAME, 'excavator'),
       password: stringy(env.EXCAVATOR_DB_PASSWORD, ''),
       storage: stringy(env.EXCAVATOR_DB_STORAGE, ':memory:'),

@@ -60,24 +60,23 @@ export const GetRepository = async (config?: IConfiguration): Promise<Sequelize>
   return sequelize
 }
 
-const Migrator = (config?: IConfiguration): Promise<Umzug.Umzug[]> => {
-  return GetRepository(config).then((sequelize: Sequelize): Umzug.Umzug[] => GetUmzugConfigs(sequelize))
-}
-
-export const MigrateDown = async (config?: IConfiguration): Promise<void> => {
-  const [migrations, seeders] = await Migrator(config)
+export const MigrateDown = async (sequelize?: Sequelize): Promise<void> => {
+  const sqlts: Sequelize = sequelize || await GetRepository(await GetConfig())
+  const [migrations, seeders] = GetUmzugConfigs(sqlts)
   await seeders.down()
   await migrations.down()
 }
 
-export const MigrateList = async (config?: IConfiguration): Promise<Umzug.Migration[]> => {
-  const [migrations, seeders] = await Migrator(config)
+export const MigrateList = async (sequelize?: Sequelize): Promise<Umzug.Migration[]> => {
+  const sqlts: Sequelize = sequelize || await GetRepository(await GetConfig())
+  const [migrations, seeders] = GetUmzugConfigs(sqlts)
   const pendingMigrations: Umzug.Migration[] = await migrations.pending()
   return pendingMigrations.concat(await seeders.pending())
 }
 
-export const MigrateUp = async (config?: IConfiguration): Promise<void> => {
-  const [migrations, seeders] = await Migrator(config)
+export const MigrateUp = async (sequelize?: Sequelize): Promise<void> => {
+  const sqlts: Sequelize = sequelize || await GetRepository(await GetConfig())
+  const [migrations, seeders] = GetUmzugConfigs(sqlts)
   await migrations.up()
   await seeders.up()
 }
