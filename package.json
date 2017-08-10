@@ -13,7 +13,7 @@
     "url": "git+https://github.com/nativecode-dev/excavator-data.git"
   },
   "typings": "lib/index.d.ts",
-  "version": "0.2.0",
+  "version": "0.1.0",
   "dependencies": {
     "@nofrills/lincoln-debug": "^0.3.2",
     "@nofrills/smorgasbord": "0.6.0",
