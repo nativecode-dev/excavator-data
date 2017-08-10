@@ -55,6 +55,7 @@
     "exclude": [
       "src/migrations/**/*.ts",
       "src/seeders/**/*.ts",
+      "src/server*.ts",
       "tests/**/*.ts"
     ],
     "extension": [
