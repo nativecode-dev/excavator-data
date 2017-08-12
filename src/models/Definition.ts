@@ -10,26 +10,27 @@ import { Model } from './Model'
  */
 @Table
 export class Definition extends Model<Definition> {
-  @Column
   /**
    * @type {string}
    * @memberOf Definition
    */
+  @Column
   public description: string
 
-  @Unique
-  @Column
   /**
    * @type {string}
    * @memberOf Definition
    */
+  @Unique
+  @Column
   public name: string
 
-  @HasMany(() => DefinitionValue)
   /**
+   * @name values
    * @type {DefinitionValue[]}
    * @memberOf Definition
    */
+  @HasMany(() => DefinitionValue)
   public values: DefinitionValue[]
 
   protected typename(): string {

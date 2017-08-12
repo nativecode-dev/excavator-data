@@ -22,47 +22,48 @@ export enum DefinitionValueType {
  */
 @Table
 export class DefinitionValue extends Model<DefinitionValue> {
-  @BelongsTo(() => Definition)
   /**
+   * @name definition
    * @type {Definition}
    * @memberOf DefinitionValue
    */
+  @BelongsTo(() => Definition)
   public definition: Definition
 
-  @ForeignKey(() => Definition)
-  @Column
   /**
    * @type {number}
    * @memberOf DefinitionValue
    */
+  @ForeignKey(() => Definition)
+  @Column
   public definitionId: number
 
-  @Column
   /**
    * @type {string}
    * @memberOf DefinitionValue
    */
+  @Column
   public description: string
 
-  @Column
   /**
    * @type {string}
    * @memberOf DefinitionValue
    */
+  @Column
   public name: string
 
-  @Column
   /**
    * @type {string}
    * @memberOf DefinitionValue
    */
+  @Column
   public semantic: string
 
-  @Column
   /**
    * @type {DefinitionValueType}
    * @memberOf DefinitionValue
    */
+  @Column
   public type: DefinitionValueType
 
   protected typename(): string {
