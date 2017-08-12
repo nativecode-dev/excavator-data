@@ -14,7 +14,9 @@
     "importHelpers": false,
     "jsx": "react",
     "lib": [
-      "es2015"
+      "dom",
+      "es2015",
+      "esnext"
     ],
     "listEmittedFiles": false,
     "module": "commonjs",
@@ -34,5 +36,5 @@
     "src/**/*.ts",
     "src/**/*.tsx"
   ],
-  "jsdoc": ".jsdocs"
+  "jsdoc": "docs"
 }
