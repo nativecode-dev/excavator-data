@@ -76,7 +76,7 @@
     "document": "ts2jsdoc .",
     "clean": "rimraf lib && rimraf .nyc_output && rimraf coverage",
     "test": "cross-env DEBUG= EXCAVATOR_ENV=testing nyc mocha --opts mocha.opts",
-    "pretest": "npm run build",
+    "pretest": "yarn run build",
     "coverage": "cross-env DEBUG= nyc --reporter=teamcity mocha --opts mocha.opts",
     "coveralls": "cross-env DEBUG= nyc report --reporter=text-lcov | coveralls",
     "interactive": "cross-env DEBUG= ts-node src/excavator-cli.ts",

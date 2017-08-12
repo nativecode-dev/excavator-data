@@ -1,4 +1,4 @@
-dir: docs
+dir: .jsdocs
 packageJson: package.json
 branches:
   - master
