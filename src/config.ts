@@ -8,10 +8,20 @@ import { Lincoln, Logger } from './logging'
 
 export type IDbConfiguration = ISequelizeConfig
 
+/**
+ * Configuration options for the library.
+ * @export
+ * @interface IConfiguration
+ */
 export interface IConfiguration {
   db: IDbConfiguration
 }
 
+/**
+ * Configuration container.
+ * @export
+ * @interface IConfigurationEnv
+ */
 export interface IConfigurationEnv {
   [key: string]: IConfiguration
 }
@@ -74,5 +84,15 @@ const ConfigSearch = async (cwd: string, env: any): Promise<IConfiguration> => {
   }
 }
 
-export const GetConfig = async (cwd?: string, env?: any): Promise<IConfiguration> =>
-  await ConfigSearch(cwd || process.cwd(), env || process.env)
+export
+  /**
+   * Attempts to find a configuration JSON file. If it can't find a
+   * configuruation, it will fallback to environment variables. If
+   * environment variables aren't available, it will use default
+   * values for an in-memory SQLite database.
+   * @param {string} [cwd]
+   * @param {*} [env]
+   * @returns {Promise<IConfiguration>}
+   */
+  const GetConfig = async (cwd?: string, env?: any): Promise<IConfiguration> =>
+    await ConfigSearch(cwd || process.cwd(), env || process.env)

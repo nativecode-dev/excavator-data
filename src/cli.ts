@@ -2,8 +2,9 @@ import * as inquirer from 'inquirer'
 import * as umzug from 'umzug'
 
 import { Sequelize } from 'sequelize-typescript'
-import { ExcavatorDataServer, GetConfig, GetRepository, IConfiguration, MigrateDown, MigrateList, MigrateUp } from './index'
+import { GetConfig, GetRepository, IConfiguration, MigrateDown, MigrateList, MigrateUp } from './index'
 import { Logger } from './logging'
+import { ExcavatorDataServer } from './server'
 
 enum CliCommandType {
   server = 'server',

@@ -5,10 +5,10 @@ import * as Models from './models/index'
 import { ChainHandlerLink, ChainHandlers } from '@nofrills/smorgasbord'
 import { Lincoln, Logger } from './logging'
 import { Model } from './models/Model'
-import { RequestWrapper, ResponseWrapper } from './server'
+import { Request, Response } from './server'
 
-export type Handlers = ChainHandlers<RequestWrapper, ResponseWrapper>
-export type ResponseHandler = ChainHandlerLink<RequestWrapper, ResponseWrapper>
+export type Handlers = ChainHandlers<Request, Response>
+export type ResponseHandler = ChainHandlerLink<Request, Response>
 
 interface Dictionary<T> {
   [key: string]: T
@@ -16,13 +16,13 @@ interface Dictionary<T> {
 
 export const DefaultHandlers: Handlers = [
   // Logging handler
-  (request: RequestWrapper, next: ResponseHandler): ResponseWrapper => {
+  (request: Request, next: ResponseHandler): Response => {
     Logger.debug(request.api.url)
     return next(request)
   },
 
   // Killer handler
-  (request: RequestWrapper, next: ResponseHandler): ResponseWrapper => {
+  (request: Request, next: ResponseHandler): Response => {
     if (request.api.url === '/killme') {
       process.exit(0)
     }
@@ -30,7 +30,7 @@ export const DefaultHandlers: Handlers = [
   },
 
   // Routing handler
-  (request: RequestWrapper, next: ResponseHandler): ResponseWrapper => {
+  (request: Request, next: ResponseHandler): Response => {
     if (request.api.url) {
       const uri: url.Url = url.parse(request.api.url)
       if (uri.pathname) {
@@ -44,7 +44,7 @@ export const DefaultHandlers: Handlers = [
       }
     }
 
-    const response: ResponseWrapper = next(request)
+    const response: Response = next(request)
     if (response) {
       response.api.statusCode = 200
     }
@@ -52,9 +52,9 @@ export const DefaultHandlers: Handlers = [
   },
 
   // Terminating handler
-  (request: RequestWrapper, next: ResponseHandler): ResponseWrapper => {
+  (request: Request, next: ResponseHandler): Response => {
     Logger.debug('terminating')
-    const response: ResponseWrapper = next(request)
+    const response: Response = next(request)
     response.api.end()
     Logger.debug('terminated')
     return response

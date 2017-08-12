@@ -6,18 +6,33 @@ import { Sequelize } from 'sequelize-typescript'
 import { Lincoln, Logger } from './logging'
 import { DefaultHandlers } from './server-handlers'
 
-export interface RequestWrapper {
+/**
+ * Represents the context for a request.
+ * @export
+ * @interface Request
+ */
+export interface Request {
   api: http.IncomingMessage
   sequelize: Sequelize
   server: http.Server
 }
 
-export interface ResponseWrapper {
+/**
+ * Represents the context for a response.
+ * @export
+ * @interface Response
+ */
+export interface Response {
   api: http.ServerResponse
 }
 
+/**
+ * Configuration options for the server.
+ * @export
+ * @interface IServerConfiguration
+ */
 export interface IServerConfiguration {
-  handlers: ChainHandlers<RequestWrapper, ResponseWrapper>
+  handlers: ChainHandlers<Request, Response>
   host: string
   port: number
 }
@@ -28,8 +43,16 @@ const DefaultConfig: IServerConfiguration = {
   port: 9001,
 }
 
+/**
+ * A default API server that can be used to quickly update the database
+ * via REST calls. It is recommended that you use another package, such
+ * as ExpressJS. However, that shouldn't preclude you from using this in
+ * production, because it's just a basic node http server.
+ * @export
+ * @class ExcavatorDataServer
+ */
 export class ExcavatorDataServer {
-  private readonly chains: Chain<RequestWrapper, ResponseWrapper>
+  private readonly chains: Chain<Request, Response>
   private readonly config: IServerConfiguration
   private readonly log: Lincoln
   private readonly server: http.Server
@@ -39,13 +62,13 @@ export class ExcavatorDataServer {
 
   constructor(config?: Partial<IServerConfiguration>) {
     this.config = { ...config, ...DefaultConfig }
-    this.chains = new Chain<RequestWrapper, ResponseWrapper>(this.config.handlers)
+    this.chains = new Chain<Request, Response>(this.config.handlers)
     this.log = Logger.extend('server')
     this.server = http.createServer(
       (request: http.IncomingMessage, response: http.ServerResponse): void => {
-        const req: RequestWrapper = { api: request, sequelize: this.sequelize, server: this.server }
-        const res: ResponseWrapper = { api: response }
-        this.chains.execute(req, true, (): ResponseWrapper => res)
+        const req: Request = { api: request, sequelize: this.sequelize, server: this.server }
+        const res: Response = { api: response }
+        this.chains.execute(req, true, (): Response => res)
       }
     )
   }
