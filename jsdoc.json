@@ -1,0 +1,19 @@
+{
+  "source": {
+    "include": ["docs"],
+    "includePattern": ".+\\.jsx?$"
+  },
+  "opts": {
+    "destination": "docs-html",
+    "readme": "README.md"
+  },
+  "plugins": [
+    "plugins/markdown",
+    "plugins/summarize"
+  ],
+  "sourceType": "module",
+  "templates": {
+    "cleverLinks": true,
+    "monospaceLinks": true
+  }
+}
