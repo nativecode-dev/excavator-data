@@ -2,20 +2,20 @@
 .vscode/
 coverage/
 docs/
-jsdoc/
 node_modules/
 src/
 tests/
 
+.doclets.yml
 .editorconfig
 .eslintrc
 .gitignore
 .jsbeautifyrc
 .npmignore
 .npmrc
-.nycrc
 .travis.yml
-gulpfile.js
+.yarnclean
+jsdoc.json
 mocha.opts
 nodemon.json
 tsconfig.json
