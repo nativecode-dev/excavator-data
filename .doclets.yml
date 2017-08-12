@@ -1,2 +1,7 @@
 dir: lib/docs
 packageJson: package.json
+branches:
+  - master
+  - develop
+articles:
+  - README: README.md
