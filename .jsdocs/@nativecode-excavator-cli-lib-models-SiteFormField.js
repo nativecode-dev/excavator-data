@@ -9,6 +9,9 @@
  * @property {number} formId
  * @property {string} selector
  * @property {string} tag
+ * @export
+ * @class
+ * @extends
  */
 export class SiteFormField {
   /**

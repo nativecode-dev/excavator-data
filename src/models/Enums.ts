@@ -1,3 +1,7 @@
+/**
+ * @export
+ * @enum {number}
+ */
 export enum HttpMethod {
   delete = 'DELETE',
   get = 'GET',

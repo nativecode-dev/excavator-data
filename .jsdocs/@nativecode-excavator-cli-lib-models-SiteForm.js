@@ -9,6 +9,9 @@
  * @property {string} selector
  * @property {module:@nativecode/excavator-cli/lib/models/Site.Site} site
  * @property {number} siteId
+ * @export
+ * @class
+ * @extends
  */
 export class SiteForm {
   /**

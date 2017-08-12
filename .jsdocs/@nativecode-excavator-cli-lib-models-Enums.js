@@ -3,6 +3,8 @@
  */
 
 /**
+ * * @export
+ * * @enum {number}
  * @enum {number}
  * @property delete
  * @property get

@@ -8,6 +8,9 @@
  * @property {number} siteFormFieldId
  * @property {string} name
  * @property {string} value
+ * @export
+ * @class
+ * @extends
  */
 export class SiteFormFieldAttribute {
   /**

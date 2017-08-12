@@ -6,6 +6,9 @@
  * @extends module:@nativecode/excavator-cli/lib/models/Model.Model
  * @property {string} description
  * @property {Array<module:@nativecode/excavator-cli/lib/models/SiteForm.SiteForm>} forms
+ * @export
+ * @class
+ * @extends
  */
 export class Site {
   /**

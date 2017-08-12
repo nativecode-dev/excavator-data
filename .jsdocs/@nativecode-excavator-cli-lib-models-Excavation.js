@@ -3,9 +3,13 @@
  */
 
 /**
+ * An excavation represents the state of a scraping operation.
  * @extends module:@nativecode/excavator-cli/lib/models/Model.Model
  * @property {number} excavatorId
  * @property {string} url
+ * @export
+ * @class
+ * @extends
  */
 export class Excavation {
   /**
