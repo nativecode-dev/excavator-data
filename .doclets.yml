@@ -1,4 +1,4 @@
-dir: lib/docs
+dir: docs
 packageJson: package.json
 branches:
   - master
