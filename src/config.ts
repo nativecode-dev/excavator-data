@@ -14,6 +14,10 @@ export type IDbConfiguration = ISequelizeConfig
  * @interface IConfiguration
  */
 export interface IConfiguration {
+  /**
+   * @type {IDbConfiguration}
+   * @memberOf IConfiguration
+   */
   db: IDbConfiguration
 }
 

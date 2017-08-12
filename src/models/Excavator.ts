@@ -18,11 +18,11 @@ export class Excavator extends Model<Excavator> {
   @Column
   public description: string
 
+  @HasMany(() => ExcavatorMapping)
   /**
    * @type {ExcavatorMapping[]}
    * @memberOf Excavator
    */
-  @HasMany(() => ExcavatorMapping)
   public excavatorMappings: ExcavatorMapping[]
 
   /**
