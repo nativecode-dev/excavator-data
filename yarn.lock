@@ -1834,6 +1834,10 @@ levn@^0.3.0, levn@~0.3.0:
     prelude-ls "~1.1.2"
     type-check "~0.3.2"
 
+link-bin@^2.0.2:
+  version "2.0.2"
+  resolved "https://registry.yarnpkg.com/link-bin/-/link-bin-2.0.2.tgz#778dc917042c665ddb2205ef37b1163f56584986"
+
 load-json-file@^1.0.0:
   version "1.1.0"
   resolved "https://registry.yarnpkg.com/load-json-file/-/load-json-file-1.1.0.tgz#956905708d58b4bab4c2261b04f59f31c99374c0"
