@@ -1,6 +1,6 @@
 {
   "author": "support@nativecode.com",
-  "bin": "lib/cli.js",
+  "bin": "lib/excavator-data.js",
   "bugs": {
     "url": "https://github.com/nativecode-dev/excavator-data/issues"
   },
