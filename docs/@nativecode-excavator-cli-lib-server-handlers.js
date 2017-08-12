@@ -1,5 +1,5 @@
 /** 
- * @module @nativecode/excavator-data/lib/server-handlers
+ * @module @nativecode/excavator-cli/lib/server-handlers
  */
 
 /**

@@ -1,6 +1,6 @@
 {
   "author": "support@nativecode.com",
-  "bin": "lib/excavator-data.js",
+  "bin": "lib/excavator-cli.js",
   "bugs": {
     "url": "https://github.com/nativecode-dev/excavator-data/issues"
   },
@@ -8,7 +8,7 @@
   "homepage": "https://github.com/nativecode-dev/excavator-data#readme",
   "license": "MIT",
   "main": "lib/index.js",
-  "name": "@nativecode/excavator-data",
+  "name": "@nativecode/excavator-cli",
   "repository": {
     "type": "git",
     "url": "git+https://github.com/nativecode-dev/excavator-data.git"
@@ -20,7 +20,6 @@
     "@nofrills/smorgasbord": "0.6.0",
     "bluebird": "^3.5.0",
     "inquirer": "^3.2.1",
-    "link-bin": "^2.0.2",
     "reflect-metadata": "^0.1.10",
     "sequelize": "^4.4.2",
     "sequelize-typescript": "^0.4.0",
@@ -80,8 +79,7 @@
     "pretest": "npm run build",
     "coverage": "cross-env DEBUG= nyc --reporter=teamcity mocha --opts mocha.opts",
     "coveralls": "cross-env DEBUG= nyc report --reporter=text-lcov | coveralls",
-    "install": "link-bin",
-    "interactive": "cross-env DEBUG= ts-node src/cli.ts",
+    "interactive": "cross-env DEBUG= ts-node src/excavator-cli.ts",
     "watch": "cross-env DEBUG=nativecode:excavator-data:* nodemon"
   }
 }

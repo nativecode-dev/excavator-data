@@ -1,5 +1,5 @@
 /** 
- * @module @nativecode/excavator-data/lib/server
+ * @module @nativecode/excavator-cli/lib/server
  */
 
 /**
@@ -13,13 +13,13 @@
 export class ExcavatorDataServer {
   /**
    * @param {Sequelize} sequelize
-   * @function module:@nativecode/excavator-data/lib/server.ExcavatorDataServer#start
+   * @function module:@nativecode/excavator-cli/lib/server.ExcavatorDataServer#start
    * @returns {Promise<void>}
    */
   start() {}
 
   /**
-   * @function module:@nativecode/excavator-data/lib/server.ExcavatorDataServer#stop
+   * @function module:@nativecode/excavator-cli/lib/server.ExcavatorDataServer#stop
    * @returns {Promise<module:http.Server>}
    */
   stop() {}
@@ -27,7 +27,7 @@ export class ExcavatorDataServer {
 
 /**
  * Configuration options for the server.
- * @interface module:@nativecode/excavator-data/lib/server.IServerConfiguration
+ * @interface module:@nativecode/excavator-cli/lib/server.IServerConfiguration
  * @property {Array<module:/Users/mpham/Code/opensource/excavator-data/node_modules/@nofrills/smorgasbord/lib/Patterns/Chains.__type>} handlers
  * @property {string} host
  * @property {number} port
@@ -39,7 +39,7 @@ export class IServerConfiguration {
 
 /**
  * Represents the context for a request.
- * @interface module:@nativecode/excavator-data/lib/server.Request
+ * @interface module:@nativecode/excavator-cli/lib/server.Request
  * @property {module:http.IncomingMessage} api
  * @property {Sequelize} sequelize
  * @property {module:http.Server} server
@@ -51,7 +51,7 @@ export class Request {
 
 /**
  * Represents the context for a response.
- * @interface module:@nativecode/excavator-data/lib/server.Response
+ * @interface module:@nativecode/excavator-cli/lib/server.Response
  * @property {module:http.ServerResponse} api
  * @export
  * @interface Response

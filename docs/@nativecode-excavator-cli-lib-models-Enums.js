@@ -1,5 +1,5 @@
 /** 
- * @module @nativecode/excavator-data/lib/models/Enums
+ * @module @nativecode/excavator-cli/lib/models/Enums
  */
 
 /**

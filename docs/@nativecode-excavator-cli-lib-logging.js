@@ -1,5 +1,5 @@
 /** 
- * @module @nativecode/excavator-data/lib/logging
+ * @module @nativecode/excavator-cli/lib/logging
  */
 
 /**

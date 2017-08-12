@@ -1,5 +1,5 @@
 /** 
- * @module @nativecode/excavator-data/lib/models/Model
+ * @module @nativecode/excavator-cli/lib/models/Model
  */
 
 /**
@@ -12,7 +12,7 @@
 export class Model {
   /**
    * @protected
-   * @function module:@nativecode/excavator-data/lib/models/Model.Model#typename
+   * @function module:@nativecode/excavator-cli/lib/models/Model.Model#typename
    * @returns {string}
    */
   typename() {}
