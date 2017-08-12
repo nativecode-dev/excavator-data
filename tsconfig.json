@@ -33,5 +33,6 @@
   "include": [
     "src/**/*.ts",
     "src/**/*.tsx"
-  ]
+  ],
+  "jsdoc": "lib/docs"
 }

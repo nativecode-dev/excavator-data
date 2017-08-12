@@ -46,6 +46,7 @@
     "nodemon": "^1.11.0",
     "nyc": "^11.1.0",
     "rimraf": "^2.6.1",
+    "ts-jsdoc": "^2.0.5",
     "ts-node": "^3.3.0",
     "tslint": "^5.6.0",
     "typescript": "^2.4.2"
@@ -69,7 +70,10 @@
   },
   "scripts": {
     "build": "tsc --project tsconfig.json",
-    "prebuild": "rimraf lib && rimraf .nyc_output && rimraf coverage",
+    "prebuild": "yarn run clean",
+    "postbuild": "yarn run document",
+    "document": "ts2jsdoc .",
+    "clean": "rimraf lib && rimraf .nyc_output && rimraf coverage",
     "test": "cross-env DEBUG= EXCAVATOR_ENV=testing nyc mocha --opts mocha.opts",
     "pretest": "npm run build",
     "coverage": "cross-env DEBUG= nyc --reporter=teamcity mocha --opts mocha.opts",
