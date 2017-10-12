@@ -1,17 +1,8 @@
 import { BelongsTo, Column, ForeignKey, Table, Unique } from 'sequelize-typescript'
 import { Definition } from './Definition'
+import { DefinitionValueType } from './DefinitionValueType'
+import { IDefinitionValue } from './interfaces'
 import { Model } from './Model'
-
-/**
- * Represents what the value is mapped to, which can
- * either be an action or act as input.
- * @export
- * @enum {number}
- */
-export enum DefinitionValueType {
-  Action = 0,
-  Input = 1,
-}
 
 /**
  * A value attached to a definition that defines the semantic
@@ -21,7 +12,7 @@ export enum DefinitionValueType {
  * @extends {Model<DefinitionValue>}
  */
 @Table
-export class DefinitionValue extends Model<DefinitionValue> {
+export class DefinitionValue extends Model<DefinitionValue> implements IDefinitionValue {
   /**
    * @name definition
    * @type {Definition}

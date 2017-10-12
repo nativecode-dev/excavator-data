@@ -1,4 +1,5 @@
 import { Column, HasMany, Table, Unique } from 'sequelize-typescript'
+import { ISite } from './interfaces'
 import { Model } from './Model'
 import { SiteForm } from './SiteForm'
 
@@ -8,7 +9,7 @@ import { SiteForm } from './SiteForm'
  * @extends {Model<Site>}
  */
 @Table
-export class Site extends Model<Site> {
+export class Site extends Model<Site> implements ISite {
   /**
    * @type {string}
    * @memberOf Site

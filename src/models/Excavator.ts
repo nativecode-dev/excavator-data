@@ -1,5 +1,6 @@
 import { Column, HasMany, Table, Unique } from 'sequelize-typescript'
 import { ExcavatorMapping } from './ExcavatorMapping'
+import { IExcavator } from './interfaces'
 import { Model } from './Model'
 
 /**
@@ -10,7 +11,7 @@ import { Model } from './Model'
  * @extends {Model<Excavator>}
  */
 @Table
-export class Excavator extends Model<Excavator> {
+export class Excavator extends Model<Excavator> implements IExcavator {
   /**
    * @type {string}
    * @memberOf Excavator
@@ -23,7 +24,7 @@ export class Excavator extends Model<Excavator> {
    * @type {ExcavatorMapping[]}
    * @memberOf Excavator
    */
-  public excavatorMappings: ExcavatorMapping[]
+  public mappings: ExcavatorMapping[]
 
   /**
    * @type {string}

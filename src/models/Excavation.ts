@@ -1,5 +1,6 @@
 import { Column, ForeignKey, IsUrl, Table } from 'sequelize-typescript'
 import { Excavator } from './Excavator'
+import { IExcavation } from './interfaces'
 import { Model } from './Model'
 
 /**
@@ -9,7 +10,7 @@ import { Model } from './Model'
  * @extends {Model<Excavation>}
  */
 @Table
-export class Excavation extends Model<Excavation> {
+export class Excavation extends Model<Excavation> implements IExcavation {
   /**
    * @type {number}
    * @memberOf Excavation

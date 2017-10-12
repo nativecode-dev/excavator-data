@@ -1,5 +1,6 @@
 import { Column, HasMany, Table, Unique } from 'sequelize-typescript'
 import { DefinitionValue } from './DefinitionValue'
+import { IDefinition, IDefinitionValue } from './interfaces'
 import { Model } from './Model'
 
 /**
@@ -9,7 +10,7 @@ import { Model } from './Model'
  * @extends {Model<Definition>}
  */
 @Table
-export class Definition extends Model<Definition> {
+export class Definition extends Model<Definition> implements IDefinition {
   /**
    * @type {string}
    * @memberOf Definition

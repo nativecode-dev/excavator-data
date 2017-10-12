@@ -1,6 +1,9 @@
+export * from './interfaces'
+
 export * from './Definition'
 export * from './DefinitionValue'
-export * from './Enums'
+export * from './DefinitionValueType'
+export * from './HttpMethod'
 export * from './Excavation'
 export * from './Excavator'
 export * from './ExcavatorMapping'

@@ -1,5 +1,6 @@
 import { BelongsTo, Column, ForeignKey, HasMany, Table, Unique } from 'sequelize-typescript'
-import { HttpMethod } from './Enums'
+import { HttpMethod } from './HttpMethod'
+import { ISiteForm } from './interfaces'
 import { Model } from './Model'
 import { Site } from './Site'
 import { SiteFormField } from './SiteFormField'
@@ -10,7 +11,7 @@ import { SiteFormField } from './SiteFormField'
  * @extends {Model<SiteForm>}
  */
 @Table
-export class SiteForm extends Model<SiteForm> {
+export class SiteForm extends Model<SiteForm> implements ISiteForm {
   /**
    * @type {SiteFormField[]}
    * @memberOf SiteForm

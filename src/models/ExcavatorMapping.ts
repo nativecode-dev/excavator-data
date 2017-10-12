@@ -1,6 +1,7 @@
 import { BelongsTo, Column, ForeignKey, HasOne, Table, Unique } from 'sequelize-typescript'
 import { DefinitionValue } from './DefinitionValue'
 import { Excavator } from './Excavator'
+import { IExcavatorMapping } from './interfaces'
 import { Model } from './Model'
 import { Site } from './Site'
 
@@ -12,7 +13,22 @@ import { Site } from './Site'
  * @extends {Model<ExcavatorMapping>}
  */
 @Table
-export class ExcavatorMapping extends Model<ExcavatorMapping> {
+export class ExcavatorMapping extends Model<ExcavatorMapping> implements IExcavatorMapping {
+  /**
+   * @type {DefinitionValue}
+   * @memberOf ExcavatorMapping
+   */
+  @BelongsTo(() => DefinitionValue)
+  public definitionValue: DefinitionValue
+
+  /**
+   * @type {number}
+   * @memberOf ExcavatorMapping
+   */
+  @ForeignKey(() => DefinitionValue)
+  @Column
+  public definitionValueId: number
+
   /**
    * @type {Excavator}
    * @memberOf ExcavatorMapping
@@ -27,23 +43,6 @@ export class ExcavatorMapping extends Model<ExcavatorMapping> {
   @ForeignKey(() => Excavator)
   @Column
   public excavatorId: number
-
-  /**
-   * @type {DefinitionValue}
-   * @memberOf ExcavatorMapping
-   */
-  @BelongsTo(() => DefinitionValue)
-  public definitionValue: DefinitionValue
-
-  /**
-   * 
-   * 
-   * @type {number}
-   * @memberOf ExcavatorMapping
-   */
-  @ForeignKey(() => DefinitionValue)
-  @Column
-  public definitionValueId: number
 
   protected typename(): string {
     return 'ExcavatorMapping'

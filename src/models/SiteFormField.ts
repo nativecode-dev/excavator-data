@@ -1,4 +1,5 @@
 import { BelongsTo, Column, ForeignKey, HasMany, Table, Unique } from 'sequelize-typescript'
+import { ISiteFormField } from './interfaces'
 import { Model } from './Model'
 import { SiteForm } from './SiteForm'
 import { SiteFormFieldAttribute } from './SiteFormFieldAttribute'
@@ -9,7 +10,7 @@ import { SiteFormFieldAttribute } from './SiteFormFieldAttribute'
  * @extends {Model<SiteFormField>}
  */
 @Table
-export class SiteFormField extends Model<SiteFormField> {
+export class SiteFormField extends Model<SiteFormField> implements ISiteFormField {
   /**
    * @type {SiteFormFieldAttribute[]}
    * @memberOf SiteFormField
