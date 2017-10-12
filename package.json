@@ -73,8 +73,7 @@
   "scripts": {
     "build": "tsc --project tsconfig.json",
     "prebuild": "yarn run clean",
-    "postbuild": "yarn run document",
-    "document": "ts2jsdoc .",
+    "document": "ts2jsdoc src",
     "clean": "rimraf lib && rimraf .nyc_output && rimraf coverage",
     "test": "cross-env DEBUG= EXCAVATOR_ENV=testing nyc mocha --opts mocha.opts",
     "pretest": "yarn run build",
